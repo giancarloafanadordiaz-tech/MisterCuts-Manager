@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarberApp - A Domicilio</title>
+    <style>
+        /* Estilos base simulando una vista móvil */
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e67e22;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-main: #333333;
+            --text-muted: #7f8c8d;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e0e0e0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 414px;
+            /* Tamaño típico de un smartphone */
+            background-color: var(--bg-color);
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Encabezado */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .search-bar {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .search-bar input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        /* Tarjetas de Barberos */
+        .feed {
+            padding: 15px;
+            padding-bottom: 80px;
+        }
+
+        .barber-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .barber-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ccc;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .barber-info h2 {
+            margin: 0;
+            font-size: 18px;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .verified-badge {
+            color: #27ae60;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .barber-info p {
+            margin: 2px 0 0 0;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .rating {
+            color: #f1c40f;
+            font-size: 16px;
+            margin-top: 5px;
+        }
+
+        /* Galería estilo Instagram */
+        .gallery {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .gallery img {
+            width: 32%;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            background-color: #ddd;
+        }
+
+        /* Botón de acción */
+        .btn-solicitar {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-solicitar:hover {
+            background-color: #d35400;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Encabezado y Buscador -->
+        <header>
+            <h1>BarberApp</h1>
+            <div class="search-bar">
+                <input type="text" placeholder="📍 Tu ubicación actual..." value="Villavicencio, Meta" readonly>
+            </div>
+        </header>
+
+        <!-- Lista de Barberos Disponibles -->
+        <div class="feed">
+
+            <!-- Barbero 1 -->
+            <div class="barber-card">
+                <div class="barber-header">
+                    <!-- Imagen de perfil simulada -->
+                    <img src="https://i.pravatar.cc/150?img=11" alt="Perfil" class="profile-pic">
+                    <div class="barber-info">
+                        <h2>Esteban Rojas <span class="verified-badge">✓ Verificado</span></h2>
+                        <p>A 1.2 km de distancia</p>
+                        <div class="rating">
+                            ★★★★★ <span style="color: #333; font-size: 12px;">(4.9) - 120 reseñas</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Catálogo de cortes -->
+                <div class="gallery">
+                    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=200&h=200&fit=crop"
+                        alt="Corte 1">
+                    <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=200&h=200&fit=crop"
+                        alt="Corte 2">
+                    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=200&h=200&fit=crop"
+                        alt="Corte 3">
+                </div>
+                <button class="btn-solicitar" onclick="solicitarServicio('Esteban Rojas')">Solicitar a
+                    Domicilio</button>
+            </div>
+
+            <!-- Barbero 2 -->
+            <div class="barber-card">
+                <div class="barber-header">
+                    <img src="https://i.pravatar.cc/150?img=15" alt="Perfil" class="profile-pic">
+                    <div class="barber-info">
+                        <h2>Andrés Mendoza <span class="verified-badge">✓ Verificado</span></h2>
+                        <p>A 2.5 km de distancia</p>
+                        <div class="rating">
+                            ★★★★☆ <span style="color: #333; font-size: 12px;">(4.5) - 85 reseñas</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="gallery">
+                    <img src="https://images.unsplash.com/photo-1598908314732-07113901949e?w=200&h=200&fit=crop"
+                        alt="Corte 1">
+                    <img src="https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=200&h=200&fit=crop"
+                        alt="Corte 2">
+                    <img src="https://images.unsplash.com/photo-1512496115851-a91fb38ba79e?w=200&h=200&fit=crop"
+                        alt="Corte 3">
+                </div>
+                <button class="btn-solicitar" onclick="solicitarServicio('Andrés Mendoza')">Solicitar a
+                    Domicilio</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Script para simular la acción del botón -->
+    <script>
+        function solicitarServicio(nombreBarbero) {
+            alert("¡Solicitud enviada a " + nombreBarbero + "!\n\nEl sistema de seguridad ha validado la identidad del barbero. En breve confirmará tu servicio a domicilio.");
+        }
+    </script>
+</body>
+
+</html>
